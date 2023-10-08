@@ -54,7 +54,12 @@
             <td>
                 <a th:href="@{/showUpdateForm(bookId=${book.id})}" class="btn btn-info">Update</a>
 
-                <a th:href="@{/deleteBook(bookId=${book.id})}" class="btn btn-danger ml-2">Delete</a>
+<!--                <a th:href="@{/deleteBook(bookId=${book.id})}" class="btn btn-danger ml-2">Delete</a>-->
+                <form th:action="@{/deleteBook(bookId=${book.id})}" method="post">
+                    <input type="hidden" name="id" th:value="${book.id}" />
+                    <input type="submit" value="Delete" class="btn btn-danger" />
+                </form>
+
             </td>
         </tr>
         </tbody>

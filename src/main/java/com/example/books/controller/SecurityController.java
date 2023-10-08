@@ -2,8 +2,10 @@ package com.example.books.controller;
 
 
 import com.example.books.dto.UserDto;
+import com.example.books.entity.Role;
 import com.example.books.entity.User;
 import com.example.books.service.UserService;
+import net.bytebuddy.implementation.bytecode.Throw;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Set;
 
 @Controller
 public class SecurityController {
@@ -38,6 +41,20 @@ public class SecurityController {
         UserDto user = new UserDto();
         model.addAttribute("user", user);
         return "register";
+    }
+
+    @GetMapping("/redirect")
+    public String redirect() {
+        List<Role> userRoles = userService.getCurrentUser().getRoles();
+        for (Role role : userRoles) {
+            if (role.getName().equals("ROLE_ADMIN")) {
+                return "redirect:/users";
+            }
+            if (role.getName().equals("ROLE_USER")) {
+                return "redirect:/list";
+            }
+        }
+        throw new RuntimeException("Роль не найдена");
     }
 
     @PostMapping("/register/save")

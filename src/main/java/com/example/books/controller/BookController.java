@@ -8,10 +8,7 @@ import com.example.books.service.BookServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Optional;
@@ -43,7 +40,7 @@ public class BookController {
 
     @PostMapping("/saveBook")
     public String saveBook(@ModelAttribute Book book) {
-        bookRepository.save(book);
+        bookService.addBook(book);
         return "redirect:/list";
     }
 
@@ -59,7 +56,7 @@ public class BookController {
         return mav;
     }
 
-    @GetMapping("/deleteBook")
+    @PostMapping("/deleteBook")
     public String deleteBook(@RequestParam Long bookId) {
         bookRepository.deleteById(bookId);
         return "redirect:/list";

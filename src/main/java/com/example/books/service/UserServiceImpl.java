@@ -6,6 +6,7 @@ import com.example.books.entity.User;
 import com.example.books.repository.RoleRepository;
 import com.example.books.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -58,6 +59,13 @@ public class UserServiceImpl implements UserService {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public User getCurrentUser() {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        org.springframework.security.core.userdetails.User userDetails = ( org.springframework.security.core.userdetails.User) principal;
+        return userRepository.findByEmail(userDetails.getUsername());
+    }
+
     private UserDto mapToUserDto(User user){
         UserDto userDto = new UserDto();
         String[] str = user.getName().split(" ");
@@ -71,4 +79,5 @@ public class UserServiceImpl implements UserService {
         role.setName("ROLE_ADMIN");
         return roleRepository.save(role);
     }
+
 }
