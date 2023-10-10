@@ -37,13 +37,13 @@
 
     <form th:action="@{/saveBook}" th:object="${book}" method="POST">
 
-        <input type="text" th:field="*{title}" class="form-control col-4 mb-4" placeholder="Enter Name"/>
+        <input type="text" th:field="*{title}" class="form-control col-4 mb-4" placeholder="Enter Title"/>
 
-        <input type="text" th:field="*{author}" class="form-control col-4 mb-4" placeholder="Enter Surname"/>
+        <input type="text" th:field="*{author}" class="form-control col-4 mb-4" placeholder="Enter Author"/>
 
-        <input type="text" th:field="*{genre}" class="form-control col-4 mb-4" placeholder="Enter Faculty"/>
+        <input type="text" th:field="*{genre}" class="form-control col-4 mb-4" placeholder="Enter Genre"/>
 
-        <input type="text" th:field="*{pages}" class="form-control col-4 mb-4" placeholder="Enter Age"/>
+        <input type="text" th:field="*{pages}" class="form-control col-4 mb-4" placeholder="Enter number of pages"/>
 
         <button type="submit" class="btn btn-primary col-2">Save</button>
 

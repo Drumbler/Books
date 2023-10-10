@@ -30,6 +30,6 @@ public class UserAction {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
-    private User user;
+    private User userId;
 }
 

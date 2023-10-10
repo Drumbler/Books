@@ -33,7 +33,7 @@
         <tbody>
         <tr th:each="action : ${actions}">
             <th scope="row" th:text="${action.id}"></th>
-            <td th:text="${action.user.username}"></td>
+            <td th:text="${action.userId}"></td>
             <td th:text="${#dates.format(action.dateActions, 'dd.MM.yyyy')}"></td>
             <td th:text="${action.description}"></td>
         </tr>

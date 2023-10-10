@@ -1,10 +1,7 @@
 package com.example.books.entity;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -14,6 +11,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Entity
 @Table(name = "BOOKS")
+@ToString
 public class Book {
 
     @Id
@@ -36,6 +34,4 @@ public class Book {
     @ManyToOne
     private User user;
 
-    //Идея: Выводить список добавленных книг(Для каждого пользователя свой список)
-    // список "выбирается" по userId
 }
