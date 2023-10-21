@@ -70,12 +70,12 @@ public class BookController {
         return mav;
     }
 
-    @PostMapping("/deleteBook")
+    @GetMapping("/deleteBook")
     public String deleteBook(@RequestParam Long bookId,
                              @AuthenticationPrincipal User user,
                              @ModelAttribute Book book) {
-        Book bookToDelete = bookRepository.findById(bookId).orElse(null);
-        userActionService.deleteAction(bookToDelete, user);
+        bookRepository.deleteById(bookId);
+        userActionService.deleteAction(book, user);
         bookRepository.deleteById(bookId);
         return "redirect:/list";
     }
